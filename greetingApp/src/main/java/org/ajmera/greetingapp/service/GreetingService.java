@@ -37,12 +37,12 @@ public class GreetingService {
         return greetingRepository.findAll();
     }
 
-    public String createGreeting() {
-        return "{\"message\": \"Greeting Created!\"}";
-    }
 
-    public String updateGreeting() {
-        return "{\"message\": \"Greeting Updated!\"}";
+    public Optional<Greeting> updateGreeting(Long id, String newMessage) {
+        return greetingRepository.findById(id).map(greeting -> {
+            greeting.setMessage(newMessage);
+            return greetingRepository.save(greeting);
+        });
     }
 
     public String deleteGreeting() {

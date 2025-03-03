@@ -39,9 +39,9 @@ public class GreetingController {
         return greetingService.getAllGreetings();
     }
 
-    @PutMapping
-    public String updateGreeting() {
-        return greetingService.updateGreeting();
+    @PutMapping("/{id}")
+    public Optional<Greeting> updateGreeting(@PathVariable Long id, @RequestParam String newMessage) {
+        return greetingService.updateGreeting(id, newMessage);
     }
 
     @DeleteMapping
