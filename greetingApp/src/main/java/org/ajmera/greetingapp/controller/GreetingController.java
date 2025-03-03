@@ -1,6 +1,7 @@
 package org.ajmera.greetingapp.controller;
 
 
+import org.ajmera.greetingapp.model.Greeting;
 import org.ajmera.greetingapp.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,8 @@ public class GreetingController {
 
 
     @PostMapping
-    public String createGreeting() {
-        return greetingService.createGreeting();
+    public Greeting createGreeting(@RequestParam String message) {
+        return greetingService.saveGreeting(message);
     }
 
     @PutMapping
