@@ -1,30 +1,36 @@
 package org.ajmera.greetingapp.controller;
 
 
-
+import org.ajmera.greetingapp.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
 
+    private final GreetingService greetingService;
+
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
     @GetMapping
     public String getGreeting() {
-        return "{\"message\": \"Hello, World!\"}";
+        return greetingService.getGreeting();
     }
 
     @PostMapping
     public String createGreeting() {
-        return "{\"message\": \"Greeting Created!\"}";
+        return greetingService.createGreeting();
     }
 
     @PutMapping
     public String updateGreeting() {
-        return "{\"message\": \"Greeting Updated!\"}";
+        return greetingService.updateGreeting();
     }
 
     @DeleteMapping
     public String deleteGreeting() {
-        return "{\"message\": \"Greeting Deleted!\"}";
+        return greetingService.deleteGreeting();
     }
 }
