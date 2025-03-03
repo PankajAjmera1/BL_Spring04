@@ -12,6 +12,7 @@ import java.util.Optional;
 @RequestMapping("/greeting")
 public class GreetingController {
 
+
     private final GreetingService greetingService;
 
     public GreetingController(GreetingService greetingService) {
@@ -27,7 +28,7 @@ public class GreetingController {
 
 
     @PostMapping
-    public Greeting createGreeting(@RequestParam String message) {
+    public Greeting createGreeting(@RequestBody String message) {
         return greetingService.saveGreeting(message);
     }
     @GetMapping("/{id}")
@@ -40,7 +41,7 @@ public class GreetingController {
     }
 
     @PutMapping("/{id}")
-    public Optional<Greeting> updateGreeting(@PathVariable Long id, @RequestParam String newMessage) {
+    public Optional<Greeting> updateGreeting(@PathVariable Long id, @RequestBody String newMessage) {
         return greetingService.updateGreeting(id, newMessage);
     }
 
